@@ -1,0 +1,237 @@
+ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+ul li{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	
+}
+p{
+	padding:0px;
+	margin:0px;
+}
+body{
+	background:#e5e2eb;
+	font-family:Garamond;
+	font-weight:bold;
+	color:#1d203d;
+	font-size:18px;
+}
+#wrap{
+	padding:20px;
+}
+
+ul li{
+	float:left;
+	margin-left:35px;
+	border:1px solid #1d203d;
+	color:#1d203d;
+	border-radius:8px;
+	padding:5px 8px;
+	cursor:pointer;
+}
+ul li p{
+	font-size:18px;
+	padding:0px;
+	margin:0px;
+}
+
+
+.showSeat{
+	background:url(../images/seat_avaliable.png) no-repeat;
+	cursor: pointer;
+}
+.noSeat{
+	
+}
+.bookedSeat{
+	background:url(../images/seat_booked.png) no-repeat;
+}
+.selectSeat{
+	background:url(../images/seat_checked.png) no-repeat;
+	cursor: pointer;
+}
+#rooms{
+	height:50px;
+	margin:0 auto;
+}
+.currentRoom{
+	
+	float:left;
+	margin-left:0px;
+	border:none;
+	border:2px solid #eacefd;
+	border-radius:6px;
+	background:white;
+	cursor:pointer;
+	padding:6px;
+	box-shadow: 1px 2px 5px #888888;
+}
+#roomPuru{
+	background:url(../images/bg_currentroom.jpg);
+	color:white;
+}
+.currentRoom{
+	margin-left:20px;
+}
+#cinemaRoom{
+	background:white;
+	height:580px;
+	box-shadow: 0px 0px 5px #888888;
+}
+#centralCinema{
+	
+	width:900px;
+	height:500px;
+	margin:0 auto;
+	
+
+}
+#return{
+	position:absolute;
+	left:12px;
+	top:28px;
+	background:none;
+	border:none;
+	height:36px;
+	font-size:14px;
+	cursor:pointer;
+	color:#1d203d;
+}
+
+#return a{
+	color:white;
+	text-decoration:none;
+	font-size:14px;
+}
+#leftCinema{
+	background:white;
+	padding-top:20px;
+	float:left;
+}
+#screen{
+	background:url(../images/ticket_screen.jpg) no-repeat;
+	width:533px;
+	height:47px;
+	margin:0 auto;
+	margin-bottom:25px;
+	
+}
+#showIcon{
+
+	overflow:hidden;
+	margin-left:25px;
+	margin-top:40px;
+}
+#showIcon li{
+	border:none;
+	padding-left:40px;
+	font-size:16px;
+	margin-left:60px;
+	line-height:26px;
+}
+
+#iconAvaliable{
+	background:url(../images/seat_avaliable.png) no-repeat;
+}
+#iconSelected{
+	background:url(../images/seat_checked.png) no-repeat;
+}
+#iconBooked{
+	background:url(../images/seat_booked.png) no-repeat;
+}
+#information{
+	float:left;
+	height:100%;
+	width:260px;
+	border-left:1px solid gray;
+	padding:0px 20px;
+	margin-left:30px;
+
+	
+}
+#disSeats{
+	overflow:hidden;
+	padding-bottom:10px;
+	width:100%;
+	border:2px dotted white;
+}
+#disSeats li{
+	width:70px;
+	height:26px;
+	border:none;
+	line-height:26px;
+	font-size:14px;
+	font-weight:normal;
+	text-align:center;
+	margin-top:10px;
+	cursor:auto;
+	padding:0px;
+	margin-left:13px;
+	background:url(../images/Ticket.png) no-repeat;
+}
+.display{
+	line-height:28px;
+}
+#totalPrice{
+	border-top:1px solid gray;
+}
+#title{
+	margin-top:25px;
+	margin-bottom:20px;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	background:url(../images/bg_title.jpg);
+}
+#detail{
+	width:100%;
+	height:100px;
+}
+#submit{
+	margin-top:20px;
+	width:100%;
+	height:36px;
+	font-size:16px;
+	font-weight:bold;
+	border:1px solid #c4580f;
+	background:url(../images/bg_book.jpg);
+	border-radius:2px;
+	color:white;
+	cursor:pointer;
+	box-shadow: 0px 3px 5px #888888;
+}
+table {
+	font-size:14px;
+	margin:0 auto;
+	text-align: center;
+	background-color: white;
+	border-color: black;
+
+}
+
+td {
+	width: 37px;
+	height: 31px;
+}
+
+.innerSpan{
+	visibility: hidden;
+    width: 50px;
+    background-color:#1d0131;
+    color: #fff;
+	left:-6px;
+	top:-20px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+ 
+    z-index: 1;
+}
+td:hover .innerSpan{
+    visibility: visible;
+}

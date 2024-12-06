@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="../css/cinema.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="wrap">
+	<div>
+		<div id="outUserDate">
+			<label for="userDate"> Date:</label>
+			<input id="userDate" type="date"></input>
+		</div>
+		<div id="outTime">
+			<label for="userTime">Choose Time:</label>
+			<select id="userTime">
+				<option title="9:30">9:30</option>
+				<option title="12:00">12:00</option>
+				<option title="14:30">14:30</option>
+				<option title="17:00">17:00</option>
+				<option title="19:30">19:30</option>
+				<option title="22:00">22:00</option>
+				<option title="0:30">0:30</option>
+			</select>
+		</div>
+	</div>
+	<div id="movieList">
+	<ul id="lists">
+		<li onclick="currentSelect(this)" title="Avengers: Endgame">
+		<a target="iframe_a">
+			<img src="../images/movie_1.jpg" width="180" height="255">
+			<p>Avengers: Endgame</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Shazam!">
+		<a target="iframe_a">
+			<img src="../images/movie_2.jpg" width="180" height="255">
+			<p>Shazam!</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="The LEGO Movie 2">
+		<a target="iframe_a">
+			<img src="../images/movie_3.jpg" width="180" height="255">
+			<p>The LEGO Movie 2</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Dumbo">
+		<a target="iframe_a">
+			<img src="../images/movie_4.jpg" width="180" height="255">
+			<p>Dumbo</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Five Feet Apart">
+		<a target="iframe_a">
+			<img src="../images/movie_5.jpg" width="180" height="255">
+			<p>Five Feet Apart</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Captain Marvel">
+		<a target="iframe_a">
+			<img src="../images/movie_6.jpg" width="180" height="255">
+			<p>Captain Marvel</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Wonder Parkl">
+		<a target="iframe_a">
+			<img src="../images/movie_7.jpg" width="180" height="255">
+			<p>Wonder Park</p>
+		</a>
+		</li>
+		<li onclick="currentSelect(this)" title="Hellboy">
+		<a target="iframe_a">
+			<img src="../images/movie_8.jpg" width="180" height="255">
+			<p>Hellboy</p>
+		</a>
+		</li>
+	</ul>
+	</div>
+<div>
+<script src='../js/cinema.js'></script>
+</body>
+</html>

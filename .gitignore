@@ -1,0 +1,5 @@
+/back/.env
+/back/node_modules
+
+/front/.env
+/front/node_modules

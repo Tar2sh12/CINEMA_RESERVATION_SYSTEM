@@ -1,0 +1,87 @@
+body{
+	background:#e5e2eb;
+	font-family:Garamond;
+	font-weight:bold;
+	color:#1d203d;
+	font-size:18px;
+}
+ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+ul li{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	
+}
+#wrap{
+	width:90%;
+	margin:0 auto;
+	overflow:hidden;
+}
+#userDate{
+	border-radius:14px;
+	border:none;
+	width:150px;
+	height:30px;
+	font-size:16px;
+	background:#1d203d;
+	text-align:center;
+	line-height:30px;
+	color:#e5e2eb;
+	padding:0px 4px;
+	cursor:pointer;
+}
+#movieList{
+	overflow:hidden;
+	width:100%;
+}
+#outUserDate{
+	margin-top:20px;
+	float:left;
+}
+#outTime{
+	margin-top:20px;
+	float:left;
+	margin-left:35px;
+}
+#userTime {
+	border-radius:14px;
+	border:none;
+	width:150px;
+	height:30px;
+	font-size:16px;
+	background:#1d203d;
+	text-align:center;
+	line-height:30px;
+	color:#e5e2eb;
+	padding:2px 4px;
+	cursor:pointer;
+}
+#lists{
+	overflow:hidden;
+}
+#lists li a{
+	overflow:hidden;
+}
+ul li{
+	float:left;
+	width:180px;
+	height:300px;
+	margin-left:40px;
+	margin-top:30px;
+	border:1px solid #a8a8a8;
+	background:white;
+	color:#1d203d;
+	cursor:pointer;
+}
+
+ul li p{
+	font-size:16px;
+	text-align:center;
+	line-height:30px;
+	padding:0px;
+	margin:0px;
+}

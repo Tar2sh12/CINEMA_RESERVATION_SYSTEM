@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="../css/seatsRoom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="wrap">
+	<div id='centralCinema'>
+		<a href="cinema.html" target="iframe_a"><button id="return"><b><</b> Return</button></a>
+		<ul id='rooms'>
+			<li id="roomPuru" class='currentRoom' onClick="showRoom(this)">Puru Room</li>
+			<li id="roomWhero" class='currentRoom' onClick="showRoom(this)">Whero Room</li>
+		</ul>
+		<div id='cinemaRoom'>
+			<div id='leftCinema'>
+				<div id='screen'></div>
+				<div id="seatsPuru" ></div>
+				<div id="seatsWhero" ></div>
+				<ul id="showIcon">
+					<li id="iconAvaliable">Avaliable</li>
+					<li id="iconSelected">Selected</li>
+					<li id="iconBooked">Booked</li>
+				</ul>
+			</div>
+			<div id="information">
+				<p id='title'>Tickets</p>
+				<p class="display">Movie:<b id="disMovie"></b></p>
+				<p class="display">Room:<b id="disRoom"> Puru room</b></p>
+				<p class="display">Date:<b id="disDate"></b></p>
+				<p class="display">Seats:</p>
+				<ul id="disSeats"></ul>
+				<p class="display">Tickets:<b id="disTickets"> 0</b></p><br/>
+				<p class="display" id="totalPrice">Total Price:<b id="disPrice"> $ 0</b></p>
+				<button id="submit" onClick="bookConfirmation()" type="button">BookNow</button><br/><br/>
+				<p id="bookInfo"></p>
+			</div>
+		</div>
+	</div>
+</div>
+<script >
+function seat(room, row, column, price, condition){
+	this.room=room;
+	this.row=row;
+	this.column=column;
+	this.price=price;
+	this.condition=condition;
+}
+var seatsPuru=[];
+var seatsWhero=[];
+if(window.XMLHttpRequest){
+	xmlhttp=new XMLHttpRequest();
+}
+else{
+	xmlhttp=new ActiveXObhect("Microsoft.XMLHTTP")
+}
+xmlhttp.open("GET","seats.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+var x = xmlDoc.getElementsByTagName("SeatPuru");
+var y = xmlDoc.getElementsByTagName("SeatWhero");
+var room='';
+var row='';
+var column='';
+var price=0;
+var condition='';
+
+</script>
+<script src='../js/seatsRoom.js'></script>
+</body>
+</html>
