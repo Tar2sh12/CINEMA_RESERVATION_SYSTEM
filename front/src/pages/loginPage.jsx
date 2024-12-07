@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Make sure this is correctly imported
-import { getAuthToken, setAuthToken } from "../services/auth"; // Ensure these services are defined correctly
-import axios from "axios"; // Ensure axios is installed and used if necessary
+import { useNavigate } from "react-router-dom"; 
+import { getAuthToken, setAuthToken } from "../services/auth"; 
+import axios from "axios"; 
 import styled from "styled-components";
 
-// Styled Components
 
 const Container = styled.div`
   margin: 0;

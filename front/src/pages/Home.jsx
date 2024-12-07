@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { getAuthToken } from "../services/auth";
 import { useNavigate } from "react-router-dom";
-
 import HeaderVendor from "../components/vendor-components/vendor.header";
 import styled from "styled-components";
 import { io } from 'socket.io-client';
