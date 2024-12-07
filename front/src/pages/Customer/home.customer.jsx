@@ -147,14 +147,14 @@ const CustomerHome = () => {
 .curtain .left {
     left: 0;
     transform-origin: left;
-    animation: openLeft 1s ease-out forwards;
+    animation: openLeft 2s ease-out forwards;
 }
 
 
 .curtain .right {
     right: 0;
     transform-origin: right;
-    animation: openRight 1s ease-out forwards;
+    animation: openRight 2s ease-out forwards;
 }
 
 @keyframes openLeft {
