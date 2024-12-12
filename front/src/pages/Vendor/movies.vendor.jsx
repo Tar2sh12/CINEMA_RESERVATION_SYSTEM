@@ -3,7 +3,7 @@ import axios from "axios";
 import { getAuthToken } from "../../services/auth";
 import HeaderVendor from "../../components/vendor-components/vendor.header";
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { io } from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
