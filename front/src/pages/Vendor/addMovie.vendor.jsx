@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { io } from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from '../../components/loader';
 // Styled Components
 const AddMovieContainer = styled.div`
   width: 100%;
@@ -147,12 +148,12 @@ const MovieForm = () => {
   const navigate = useNavigate();
   const { token } = getAuthToken();
 
+  const [fetching, setFetching] = useState(false);
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // You can process the form data as needed
-
-    // Now `formData.releaseDates` will be an array of date-time strings
+    
+    setFetching(true); // Start fetching
     const dates = formData.releaseDates.map(dateTime => {
       const [date, time] = dateTime.split('T');
       const [y, m, d] = date.split('-');
@@ -182,6 +183,7 @@ const MovieForm = () => {
         }
       })
       .then((response) => {
+        setFetching(false);
         navigate('/vendor-home');
       })
       .catch((errors) => {
@@ -200,6 +202,7 @@ const MovieForm = () => {
   return (
     <>
       <HeaderVendor />
+      {(fetching ) && <Loader />}
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <AddMovieContainer>
         <AddMovieHeader>Add a New Movie</AddMovieHeader>

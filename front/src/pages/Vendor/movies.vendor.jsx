@@ -3,11 +3,24 @@ import axios from "axios";
 import { getAuthToken } from "../../services/auth";
 import HeaderVendor from "../../components/vendor-components/vendor.header";
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { io } from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// Styled Components
+import {  gql, useMutation } from '@apollo/client';
+import { Loader } from "../../components/loader";
+
+//=============================graphql=========================//
+const DELETE_MOVIES = gql`
+mutation DeleteMovie($id: ID!,$token: String!) {
+  deleteMovie(token: $token, id: $id)
+}
+`;
+
+
+
+//=====================styled components======================//
+
 const MoviesContainer = styled.div`
   padding: 2rem;
   background-color: #f4f4f4;
@@ -20,7 +33,25 @@ const MoviesHeader = styled.h1`
   margin-bottom: 2rem;
   color: #e94560;
 `;
+const DeleteMovieButton = styled.button`
+  background-color: #e94560;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
+  &:hover {
+    background-color: #d73853;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`;
 const MoviesGrid = styled.div`
   display: flex;
   justify-content: space-between;
@@ -112,9 +143,19 @@ const MovieCards = () => {
       };
   const { token} = getAuthToken();
   const [movies, setMovies] = useState([]);
+  const [fetching, setFetching] = useState(true);
+  const  [deleteMovie, {  loading, error }] = useMutation(DELETE_MOVIES, {
+    onCompleted: (data) => {
 
 
+      toast.success(data.deleteMovie);
+    },
+    onError: (err) => {
+      toast.error("Error deleting movie: " + err.message);
+    },
+  });
   useEffect(() => {
+    setFetching(true); // Start fetching
     axios
       .get("http://localhost:4040/movie/moviesOfSpecificVendor", {
         headers: {
@@ -122,20 +163,23 @@ const MovieCards = () => {
         },
       })
       .then((response) => {
-        const fetchedMovies = response?.data?.data || []; // Ensure safe data access
+        const fetchedMovies = response?.data?.data || [];
         const movieData = fetchedMovies.map((mv) => ({
+          _id: mv._id,
           title: mv.title,
           description: mv.description,
-          imageUrl: mv.Images?.secure_url, // Ensure safe access to image URL
-          times:mv.time_reservation.map((t) => formatDate(new Date(t.time_available))+"--") || [], // Ensure there is a 'times' array
+          imageUrl: mv.Images?.secure_url,
+          times: mv.time_reservation.map((t) => formatDate(new Date(t.time_available)) + "--") || [],
         }));
-
-        setMovies(movieData); // Update state with new movie data
+        setMovies(movieData);
       })
       .catch((error) => {
-        console.log(error.response?.data || error);
+        console.error(error.response?.data || error);
+      })
+      .finally(() => {
+        setFetching(false); // End fetching
       });
-  }, [token]);
+  }, [token,loading]);
   useEffect(() => {
     const socket = io('http://localhost:4040');
     socket.on('newMovie', (message) => {
@@ -145,10 +189,16 @@ const MovieCards = () => {
       socket.disconnect();
     };
   }, []);
+
+  
+  if (loading) return <Loader />;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <>
+    
     <HeaderVendor/>
-    <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+    {(fetching || loading) && <Loader />}
+    <ToastContainer position="top-right" autoClose={2000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     <MoviesContainer>
       <MoviesHeader>Available Movies</MoviesHeader>
       <MoviesGrid>
@@ -162,9 +212,17 @@ const MovieCards = () => {
             <MovieTitle>{movie.title}</MovieTitle>
             <MovieDescription>{movie.description}</MovieDescription>
             <MovieTimes>{movie.times}</MovieTimes>
+            <DeleteMovieButton
+                  onClick={() => {
+                    const id = movie._id;
+                    const {token }= getAuthToken();
+                    deleteMovie({ variables: { id, token:`movies ${token}` } });
+                  }}
+                >
+                  delete movie
+                </DeleteMovieButton>
           </MovieDetails>
         </MovieCard>
-        
         ))
       )}
       </MoviesGrid>

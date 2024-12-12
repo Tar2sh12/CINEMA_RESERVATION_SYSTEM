@@ -11,7 +11,8 @@ import { globaleResponse } from "./src/middleware/error-handling.middleware.js";
 import cors from "cors";
 import { socketConnection } from "./src/utils/socket.io.utils.js";
 import { client } from "./src/Redis/redis.js";
-
+import {mainSchema} from './src/GraphQL/Schema/index.js'
+import { createHandler } from 'graphql-http/lib/use/express';
 const app = express();
 
 config();
@@ -29,8 +30,7 @@ client.connect();
 
 app.use("/user", UserRouter);
 app.use("/movie", MovieRouter);
-// app.use("/company", companyRouter);
-// app.use("/job", jobRouter);
+app.use('/graphql', createHandler({schema:mainSchema}))
 
 app.use(globaleResponse);
 db_connection();
