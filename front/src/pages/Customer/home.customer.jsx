@@ -4,6 +4,39 @@ import styled from "styled-components";
 import { getAuthToken } from "../../services/auth";
 import HeaderCustomer from "../../components/customer-components/customer.header";
 import axios from "axios";
+
+
+//graphql 
+import { useQuery, gql } from '@apollo/client';
+import { Loader } from "../../components/loader";
+// Define the GraphQL query
+const GET_MOVIES = gql`
+query ListMovies {
+  listMovies {
+      _id
+      title
+      description
+      slug
+      createdBy
+      customId
+      createdAt
+      updatedAt
+      time_reservation {
+          time_available
+          _id
+          usersId {
+              userId
+              seats_reserved
+          }
+      }
+      Images {
+          secure_url
+          public_id
+      }
+  }
+}
+`;
+
 // Styled components
 const MoviesContainer = styled.div`
   width: 80%;
@@ -90,29 +123,43 @@ const CustomerHome = () => {
   const navigate = useNavigate();
   const { token } = getAuthToken();
   const [movies, setMovies] = useState([]);
+  const { loading, error, data } = useQuery(GET_MOVIES);
   useEffect(() => {
-    axios
-      .get("http://localhost:4040/movie", {
-        headers: {
-          token: `movies ${token}`,
-        },
-      })
-      .then((response) => {
-        const fetchedMovies = response?.data?.data || []; // Ensure safe data access
-        // const movieData = fetchedMovies.map((mv) => ({
-        //   title: mv.title,
-        //   description: mv.description,
-        //   imageUrl: mv.Images?.secure_url, // Ensure safe access to image URL
-        //   times:mv.time_reservation.map((t) => formatDate(new Date(t.time_available))+"--") || [], // Ensure there is a 'times' array
-        // }));
+    if(data){
+      setMovies(data.listMovies);
+    }
+    
+    //setMovies(data.listMovies);
+    // axios
+    //   .get("http://localhost:4040/movie", {
+    //     headers: {
+    //       token: `movies ${token}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     const fetchedMovies = response?.data?.data || []; // Ensure safe data access
+    //     // const movieData = fetchedMovies.map((mv) => ({
+    //     //   title: mv.title,
+    //     //   description: mv.description,
+    //     //   imageUrl: mv.Images?.secure_url, // Ensure safe access to image URL
+    //     //   times:mv.time_reservation.map((t) => formatDate(new Date(t.time_available))+"--") || [], // Ensure there is a 'times' array
+    //     // }));
 
-        setMovies(fetchedMovies); // Update state with new movie data
-        console.log(movies);
-      })
-      .catch((error) => {
-        console.log(error.response?.data || error);
-      });
-  }, []);
+    //     setMovies(fetchedMovies); // Update state with new movie data
+    //     console.log(movies);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response?.data || error);
+    //   });
+  }, [loading]);
+
+
+
+  
+
+  if (loading) return <Loader />;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <>
       <HeaderCustomer />
