@@ -20,7 +20,7 @@ export const deleteMovie = async (parent, args) => {
 
   const key = "movies";
   const firstthirtyMovies = await Movie.find().limit(30);
-  console.log(firstthirtyMovies);
+
   await client.set(key, JSON.stringify(firstthirtyMovies));
 
   return "movie deleted successfully";
