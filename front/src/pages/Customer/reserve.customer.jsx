@@ -189,7 +189,7 @@ const TicketBooking = () => {
   const [timeAndSeats, setTimeAndSeats] = useState([]);
   const [times, setTimes] = useState([]);
   const [oldSeats, setOldSeats] = useState([]);
-
+  const [movie, setMovie] = useState({});
   useEffect(() => {
     axios
       .get(`http://localhost:4040/movie/specificMovie/${id}`, {
@@ -199,7 +199,7 @@ const TicketBooking = () => {
         const fetchedMovies = response?.data?.data;
         const ts = [];
         const tss = [];
-
+        setMovie(fetchedMovies);
         fetchedMovies.time_reservation.forEach((time) => {
           tss.push(time.time_available);
           if (time.usersId.length > 0) {
@@ -347,7 +347,7 @@ const space=" ";
       <Center >
         <Tickets>
           <TicketSelector>
-            <Title>Movie Name</Title>
+            <Title>{movie.title}</Title>
             <style>
         {`
           .seats::before {
